@@ -17,7 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::controller(ImageController::class)->group(function () {
-    Route::get('/image-upload', 'index')->name('image.form');
-    Route::post('/upload-image', 'storeImage')->name('image.store');
+// Route::controller(ImageController::class)->group(function () {
+//     Route::get('/image-upload', 'index')->name('image.form');
+//     Route::post('/upload-image', 'storeImage')->name('image.store');
+// });
+
+Route::middleware('optimizeImages')->group(function () {
+    Route::get('/image-upload', [ImageController::class, 'index'])->name('image.form');
+    Route::post('/upload-image', [ImageController::class, 'storeImage'])->name('image.store');
 });

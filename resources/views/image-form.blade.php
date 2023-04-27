@@ -10,7 +10,7 @@
                 <strong>{{ $message }}</strong>
             </div>
 
-            <img src="{{ asset('images/' . Session::get('image')) }}" />
+            <img height="500" src="{{ asset('images/' . Session::get('image')) }}" />
         @endif
 
         <form method="POST" action="{{ route('image.store') }}" enctype="multipart/form-data">
